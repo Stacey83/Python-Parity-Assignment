@@ -114,24 +114,18 @@ def find_flipped_cell(grid):
             d = (1, 1)
         If 'a' was the flipped letter, this function would return: [0, 0]
     """
-# new_grid = list(map(list, zip(*grid)))
-#     x_pos = ()
-#     y_pos = ()
-#     for row in grid:
-#         x = Counter(row) #counts the occurances of each value in row
-#         if x['X'] % 2 == 1:
-#             x_pos = row.index
-#     for column in new_grid:   
-#         x = Counter(row) 
-#         if x['X'] % 2 == 1:
-#             y_pos = column.index
-##################################
-# grid =()
-# for i in grid:
-#         x = Counter(i)
-#         if x['X'] % 2 == 0:
-            
-#     print(grid)
-#     return(grid)
 
-    pass
+    new_list = list(map(list, zip(*grid)))
+    x = None
+    y = None
+
+    for i in grid:
+        s = Counter(i)
+        if s['X'] % 2 != 0:
+            x = grid.index(i)
+    for q in new_list: 
+        c = Counter(q)
+        if c['X'] % 2 != 0:
+            y = new_list.index(q)
+
+    return ([y, x])
