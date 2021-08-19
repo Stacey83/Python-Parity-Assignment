@@ -32,14 +32,14 @@ def add_column(grid):
     """
     #adds extra index postion to each list (line).  To work out the character of that index, count frequency of other indexes.  If 'X" count divisable % by 2, new index = "O" else "X"
     
-    for i in grid:
-        x = Counter(i)
-        if x['X'] % 2 == 0:
-            i.append('O')
+    for newcolumn in grid:
+        count = Counter(newcolumn)
+        if count['X'] % 2 == 0:
+            newcolumn.append('O')
         else:
-            i.append('X')
+            newcolumn.append('X')
 
-    print(grid)
+    # print(grid)
     return(grid)
 
 
@@ -58,8 +58,8 @@ def add_row(grid):
     new_list = list(map(list, zip(*grid))) #transposes the original grid
     
     for row in new_list:
-        x = Counter(row) #counts the occurances of each value in row
-        if x['X'] % 2 == 0: #determines if row has even number of "X"
+        rowCount = Counter(row) #counts the occurances of each value in row
+        if rowCount['X'] % 2 == 0: #determines if row has even number of "X"
             row.append('O')
         else:
             row.append('X')
@@ -116,16 +116,16 @@ def find_flipped_cell(grid):
     """
 
     new_list = list(map(list, zip(*grid)))
-    x = None
-    y = None
+    xcoord = None
+    ycoord = None
 
-    for i in grid:
-        s = Counter(i)
-        if s['X'] % 2 != 0:
-            x = grid.index(i)
-    for q in new_list: 
-        c = Counter(q)
-        if c['X'] % 2 != 0:
-            y = new_list.index(q)
+    for column in grid:
+        columncount = Counter(column)
+        if columncount['X'] % 2 != 0:
+            xcoord = grid.index(column)
+    for row in new_list: 
+        rowcount = Counter(row)
+        if rowcount['X'] % 2 != 0:
+            ycoord = new_list.index(row)
 
-    return ([y, x])
+    return ([ycoord, xcoord])
